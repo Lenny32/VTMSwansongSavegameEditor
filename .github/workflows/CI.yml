@@ -17,10 +17,15 @@ jobs:
       uses: actions/setup-dotnet@v2
       with:
         dotnet-version: 6.0.x
-        path: ~/src/
     - name: Restore dependencies
+      with:
+        path: ~/src/
       run: dotnet restore
     - name: Build
+        with:
+        path: ~/src/
       run: dotnet build --no-restore
     - name: Test
+        with:
+        path: ~/src/
       run: dotnet test --no-build --verbosity normal
