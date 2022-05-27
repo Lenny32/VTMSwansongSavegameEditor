@@ -22,10 +22,10 @@ jobs:
         path: ~/src/
       run: dotnet restore
     - name: Build
-        with:
+      with:
         path: ~/src/
       run: dotnet build --no-restore
     - name: Test
-        with:
+      with:
         path: ~/src/
       run: dotnet test --no-build --verbosity normal
