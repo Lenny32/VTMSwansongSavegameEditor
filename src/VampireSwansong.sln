@@ -1,0 +1,42 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.1.32407.343
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VampireSwansong.Editor", "VampireSwansong.Editor\VampireSwansong.Editor.csproj", "{AD43CBF3-5866-4DA7-B0C4-8EDEDE06F9DE}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Tests", "Tests", "{0B76EDF0-1235-4937-9504-A3564B72FD14}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SaveGameTests", "Tests\SaveGameTests\SaveGameTests.csproj", "{AE63E55E-CCE9-41F1-95A4-546B80ECB877}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VampireSwansong.UI", "VampireSwansong.UI\VampireSwansong.UI.csproj", "{4556CE22-ABBA-4B82-B207-8FA447752093}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{AD43CBF3-5866-4DA7-B0C4-8EDEDE06F9DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AD43CBF3-5866-4DA7-B0C4-8EDEDE06F9DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AD43CBF3-5866-4DA7-B0C4-8EDEDE06F9DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AD43CBF3-5866-4DA7-B0C4-8EDEDE06F9DE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{AE63E55E-CCE9-41F1-95A4-546B80ECB877}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{AE63E55E-CCE9-41F1-95A4-546B80ECB877}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{AE63E55E-CCE9-41F1-95A4-546B80ECB877}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{AE63E55E-CCE9-41F1-95A4-546B80ECB877}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4556CE22-ABBA-4B82-B207-8FA447752093}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4556CE22-ABBA-4B82-B207-8FA447752093}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4556CE22-ABBA-4B82-B207-8FA447752093}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4556CE22-ABBA-4B82-B207-8FA447752093}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{AE63E55E-CCE9-41F1-95A4-546B80ECB877} = {0B76EDF0-1235-4937-9504-A3564B72FD14}
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {D7D491A0-1ABB-475C-A6CE-4F47C489A278}
+	EndGlobalSection
+EndGlobal
