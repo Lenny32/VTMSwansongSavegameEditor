@@ -108,11 +108,11 @@ jobs:
       uses: thedoctor0/zip-release@master
       with:
         directory: output
-        filename: "Release_$VERSION.zip"
+        filename: Release_$VERSION.zip
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: Release
-        path: "Release_$VERSION.zip"
+        path: Release_$VERSION.zip
