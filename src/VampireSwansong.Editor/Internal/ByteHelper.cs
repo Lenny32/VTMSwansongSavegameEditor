@@ -12,8 +12,6 @@ static class ByteArrayRocks
         if (IsEmptyLocate(self, candidate))
             return -1;
 
-        var list = new List<int>();
-
         for (int i = 0; i < self.Length; i++)
         {
             if (!IsMatch(self, i, candidate))

@@ -9,7 +9,7 @@ namespace VampireSwansong.Editor;
 
 public class BasicSaveGame
 {
-    private static IEnumerable<PropertyInfo> _properties;
+    private readonly static IEnumerable<PropertyInfo> _properties;
 
     static BasicSaveGame()
     {
@@ -19,8 +19,8 @@ public class BasicSaveGame
     public IEnumerable<Character> Characters { get; set; } = Array.Empty<Character>();
     public byte[] Rebuild()
     {
-        using MemoryStream memoryStream = new MemoryStream();
-        using BinaryWriter binaryWriter = new BinaryWriter(memoryStream);
+        using MemoryStream memoryStream = new ();
+        using BinaryWriter binaryWriter = new (memoryStream);
 
         binaryWriter.Write(Header);
 
@@ -30,10 +30,9 @@ public class BasicSaveGame
             {
                 foreach (var property in _properties)
                 {
-                    var skill = property.GetValue(character.Skills) as SkillValue;
-                    if(skill == null || !skill.IsDirty)
+                    if (property.GetValue(character.Skills) is not SkillValue skill || !skill.IsDirty)
                         continue;
-
+                    
                     var offset = skill.Offset;
                     byte dataValue = character.Data[offset];
                     if (dataValue == skill.OriginalValue)

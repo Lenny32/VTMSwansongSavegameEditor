@@ -9,13 +9,11 @@ public partial class SkillEditorForm : Form
     {
         InitializeComponent();
 
-        this.KeyDown += SkillEditorForm_KeyDown;
-
-        this.skillEditorEmem.Enabled = false;
-        this.skillEditorLeysha.Enabled = false;
-        this.skillEditorGaleb.Enabled = false;
-        this.saveToolStripMenuItem.Enabled = false;
-        //Process slots at default location
+        KeyDown += SkillEditorForm_KeyDown;
+        skillEditorEmem.Enabled = false;
+        skillEditorLeysha.Enabled = false;
+        skillEditorGaleb.Enabled = false;
+        saveToolStripMenuItem.Enabled = false;
 
         var savegame = new SaveGame(new FileSystem());
         savegame.Load();
@@ -31,12 +29,12 @@ public partial class SkillEditorForm : Form
                 Text = $"Slot&{slot.Key}",
             };
         }
-        this.slotsToolStripMenuItem.DropDownItems.AddRange(slotList);
+        slotsToolStripMenuItem.DropDownItems.AddRange(slotList);
     }
 
     
     private BasicSaveGame? _saveGame;
-    private string _filePath;
+    private string? _filePath;
     private void SetSelectedSave(string filePath)
     {
         _filePath = filePath;
@@ -58,7 +56,7 @@ public partial class SkillEditorForm : Form
         this.skillEditorLeysha.Enabled = true;
         this.skillEditorGaleb.Enabled = true;
     }
-    private void SetEditor(BasicSaveGame saveGame, string name, SkillEditor skillEditor)
+    private static void SetEditor(BasicSaveGame saveGame, string name, SkillEditor skillEditor)
     {
         var player = saveGame.Characters.FirstOrDefault(x => x.Title == name);
         if (player == null)
@@ -77,7 +75,7 @@ public partial class SkillEditorForm : Form
         skillEditor.AllowValueChangeEvent(true);
     }
 
-    private void UpdateSavegameValues(BasicSaveGame saveGame, string name, SkillEditor skillEditor)
+    private static void UpdateSavegameValues(BasicSaveGame saveGame, string name, SkillEditor skillEditor)
     {
         var player = saveGame.Characters.FirstOrDefault(x => x.Title == name);
         if (player == null)
@@ -111,9 +109,8 @@ public partial class SkillEditorForm : Form
 
     
 
-    private void SkillEditorForm_KeyDown(object sender, KeyEventArgs e)
+    private void SkillEditorForm_KeyDown(object? sender, KeyEventArgs e)
     {
-
         if (e.Control && e.KeyCode == Keys.S)
         {
             Save();
@@ -124,13 +121,13 @@ public partial class SkillEditorForm : Form
         }
     }
 
-    private void saveToolStripMenuItem_Click(object sender, EventArgs e)
+    private void SaveToolStripMenuItem_Click(object? sender, EventArgs e)
     {
         Save();
     }
     private void Save()
     {
-        if (_saveGame != null)
+        if (_saveGame != null && _filePath != null)
         {
             UpdateSavegameValues(_saveGame, ConstantsPlayer.Emem, skillEditorEmem);
             UpdateSavegameValues(_saveGame, ConstantsPlayer.Leysha, skillEditorLeysha);
@@ -142,7 +139,7 @@ public partial class SkillEditorForm : Form
     }
 
 
-    private void openToolStripMenuItem_Click(object sender, EventArgs e)
+    private void OpenToolStripMenuItem_Click(object? sender, EventArgs e)
     {
         OpenFileDialog();
     }
@@ -154,31 +151,29 @@ public partial class SkillEditorForm : Form
         skillEditorGaleb.AllowValueChangeEvent(false);
 
 
-        using (OpenFileDialog openFileDialog = new OpenFileDialog())
-        {
-            openFileDialog.InitialDirectory = SaveGame.DefaultSaveGamesPath;
-            openFileDialog.Filter = "sav files (*.sav)|*.sav";
-            openFileDialog.FilterIndex = 2;
-            openFileDialog.RestoreDirectory = true;
+        using OpenFileDialog openFileDialog = new();
+        openFileDialog.InitialDirectory = SaveGame.DefaultSaveGamesPath;
+        openFileDialog.Filter = "sav files (*.sav)|*.sav";
+        openFileDialog.FilterIndex = 2;
+        openFileDialog.RestoreDirectory = true;
 
-            if (openFileDialog.ShowDialog() == DialogResult.OK)
-            {
-                //Get the path of specified file
-                string filePath = openFileDialog.FileName;
-                SetSelectedSave(filePath);
-                this.saveToolStripMenuItem.Enabled = true;
-            }
+        if (openFileDialog.ShowDialog() == DialogResult.OK)
+        {
+            //Get the path of specified file
+            string filePath = openFileDialog.FileName;
+            SetSelectedSave(filePath);
+            saveToolStripMenuItem.Enabled = true;
         }
     }
 
 
 
-    private void exitToolStripMenuItem_Click(object sender, EventArgs e)
+    private void ExitToolStripMenuItem_Click(object sender, EventArgs e)
     {
         Close();
     }
 
-    private void aboutToolStripMenuItem_Click(object sender, EventArgs e)
+    private void AboutToolStripMenuItem_Click(object sender, EventArgs e)
     {
         MessageBox.Show("I did this project for fun. Check it out ", "About");
     }

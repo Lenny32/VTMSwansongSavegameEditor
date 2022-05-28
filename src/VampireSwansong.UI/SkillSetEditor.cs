@@ -3,7 +3,7 @@
 public delegate void ValueEventHandler(string sender, byte value);
 public partial class SkillSetEditor : UserControl
 {
-    public event ValueEventHandler ValueChanged;
+    public event ValueEventHandler? ValueChanged;
 
     public virtual new bool Enabled { get => base.Enabled; set => Status(value); }
 
@@ -46,19 +46,11 @@ public partial class SkillSetEditor : UserControl
             
             _value = value;
 
-            //if(value == 0)
-            //{
-
-            //}
-            //else
-            //{
-            _radioButtons.All(x => x.Checked = (x.Value<= value.Value));
-            //_radioButtons[value.Value].Checked = true;
-            //}
+            _ = _radioButtons.All(x => x.Checked = x.Value <= value.Value);
         }
     }
 
-    private RadioButtonSkill[] _radioButtons;
+    private readonly RadioButtonSkill[] _radioButtons;
 
     public SkillSetEditor()
     {
@@ -77,7 +69,7 @@ public partial class SkillSetEditor : UserControl
     }
 
     private bool _locked = false;
-    private object _locker = new object();
+    private readonly object _locker = new ();
     private void CheckedChanged(object? sender, EventArgs e)
     {
         lock (_locker)
@@ -86,18 +78,10 @@ public partial class SkillSetEditor : UserControl
             if (_locked == false)
                 _locked = true;
         }
-        RadioButtonSkill rb = (RadioButtonSkill)sender;
 
-        //for (int i = _radioButtons.Length - 1; i >= rb.Value; i--)
-        //{
-        //    _radioButtons[i].Checked = false;
-        //} 
-        //for (int i = 0; i < rb.Value+1; i++)
-        //{
-        //    _radioButtons[i].Checked = true;
-        //}
-        if (ValueChanged != null)
-            ValueChanged(Title, rb.Value);
+        if (sender is not RadioButtonSkill rb) return;
+
+        ValueChanged?.Invoke(Title, rb.Value);
         _locked = false;
     }
 }

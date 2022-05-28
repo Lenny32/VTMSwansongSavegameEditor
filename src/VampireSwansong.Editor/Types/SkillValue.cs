@@ -14,6 +14,7 @@ public class SkillValue
     }
 
     public bool IsDirty { get; private set; }
+
     internal byte OriginalValue { get; init; }
     private byte _value;
     public byte Value
@@ -36,7 +37,7 @@ public class SkillValue
     private bool IsValid(byte value)
     {
         if (value < MinValue || value > MaxValue)
-            throw new ArgumentOutOfRangeException(nameof(Value));
+            throw new ArgumentOutOfRangeException(nameof(value));
         return true;
     }
 
@@ -46,4 +47,18 @@ public class SkillValue
     public static bool operator !=(SkillValue skill, int value) => skill.Value != value;
 
     public override string ToString() => $"{Value}";
+
+    public override bool Equals(object? obj)
+    {
+        if (obj is null)
+            return false;
+        else if (ReferenceEquals(this, obj))
+            return true;
+        return false;
+    }
+
+    public override int GetHashCode()
+    {
+        return Value.GetHashCode();
+    }
 }

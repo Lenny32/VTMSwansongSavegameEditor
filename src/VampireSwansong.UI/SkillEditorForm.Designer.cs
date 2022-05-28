@@ -149,7 +149,7 @@ partial class SkillEditorForm
             this.openToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + O";
             this.openToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.openToolStripMenuItem.Text = "&Open";
-            this.openToolStripMenuItem.Click += new System.EventHandler(this.openToolStripMenuItem_Click);
+            this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // slotsToolStripMenuItem
             // 
@@ -163,7 +163,7 @@ partial class SkillEditorForm
             this.saveToolStripMenuItem.ShortcutKeyDisplayString = "Ctrl + S";
             this.saveToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.saveToolStripMenuItem.Text = "&Save";
-            this.saveToolStripMenuItem.Click += new System.EventHandler(this.saveToolStripMenuItem_Click);
+            this.saveToolStripMenuItem.Click += new System.EventHandler(this.SaveToolStripMenuItem_Click);
             // 
             // exitToolStripMenuItem
             // 
@@ -171,7 +171,7 @@ partial class SkillEditorForm
             this.exitToolStripMenuItem.ShortcutKeyDisplayString = "Alt + F4";
             this.exitToolStripMenuItem.Size = new System.Drawing.Size(189, 26);
             this.exitToolStripMenuItem.Text = "&Exit";
-            this.exitToolStripMenuItem.Click += new System.EventHandler(this.exitToolStripMenuItem_Click);
+            this.exitToolStripMenuItem.Click += new System.EventHandler(this.ExitToolStripMenuItem_Click);
             // 
             // toolStripMenuItem1
             // 
@@ -186,7 +186,7 @@ partial class SkillEditorForm
             this.aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             this.aboutToolStripMenuItem.Size = new System.Drawing.Size(194, 26);
             this.aboutToolStripMenuItem.Text = "&About";
-            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.aboutToolStripMenuItem_Click);
+            this.aboutToolStripMenuItem.Click += new System.EventHandler(this.AboutToolStripMenuItem_Click);
             // 
             // SkillEditorForm
             // 

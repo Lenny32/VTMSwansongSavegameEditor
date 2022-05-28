@@ -28,8 +28,7 @@ public class Parser_IntegrationTests
     public void Emem_SkillsParsing_Success()
     {
         var data = Convert.FromBase64String(_emem);
-        var parser = new SaveGameParser(new byte[] { 1, 2, 3 });
-        var save = parser.CharacterAttributesParser(data);
+        var save = SaveGameParser.CharacterAttributesParser(data);
 
         save.Should().NotBeNull();
 
@@ -50,8 +49,7 @@ public class Parser_IntegrationTests
     public void Leysha_SkillsParsing_Success()
     {
         var data = Convert.FromBase64String(_leysha);
-        var parser = new SaveGameParser(new byte[] { 1, 2, 3 });
-        var save = parser.CharacterAttributesParser(data);
+        var save = SaveGameParser.CharacterAttributesParser(data);
 
         
         save.Should().NotBeNull();
@@ -77,8 +75,7 @@ public class Parser_IntegrationTests
     public void Galeb_SkillsParsing_Success()
     {
         var data = Convert.FromBase64String(_galeb);
-        var parser = new SaveGameParser(new byte[] { 1, 2, 3 });
-        var save = parser.CharacterAttributesParser(data);
+        var save = SaveGameParser.CharacterAttributesParser(data);
 
         save.Should().NotBeNull();
         save.Physical.Should().NotBeNull();

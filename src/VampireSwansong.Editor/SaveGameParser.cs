@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Linq;
 using System.Text;
 using VampireSwansong.Editor.Constants;
 using VampireSwansong.Editor.Internal;
@@ -24,10 +25,10 @@ public class SaveGameParser
     public SaveGameParser(string fileName) : this(ReadAll(fileName))
     {
     }
-    private string GetTitleFromByteArray(byte[] data)
+    private static string GetTitleFromByteArray(byte[] data)
     {
         var buffer = new StringBuilder();
-        foreach (char c in data)
+        foreach (char c in data.Select(v => (char)v))
         {
             if (c == '\0')
                 break;
@@ -70,7 +71,7 @@ public class SaveGameParser
         return new BasicSaveGame() { Header = header, Characters = Positions };
     }
 
-    private (byte? Value, int? Offset) GetValue(byte[] data, byte[] type)
+    private static (byte? Value, int? Offset) GetValue(byte[] data, byte[] type)
     {
         const int skipNoneWordLength = 5;
         var span = data.AsSpan();
@@ -82,11 +83,11 @@ public class SaveGameParser
             if (offset == -1)
                 return (null, null);
 
-            var dd2 = span.Slice(offset).ToArray();
+            var dd2 = span[offset..].ToArray();
 
             var dd2Span = dd2.AsSpan();
             var indexOfNone = dd2Span.IndexOf(ConstantsGameplaySkills.None_AsByteArray);
-            var dd3 = dd2Span.Slice(indexOfNone).ToArray();
+            var dd3 = dd2Span[indexOfNone..].ToArray();
             var value = dd3[skipNoneWordLength];
             if (value <= 5)
                 return (value, offset + indexOfNone + skipNoneWordLength);
@@ -96,9 +97,9 @@ public class SaveGameParser
         return (null, null);
     }
 
-    public CharacterSkills CharacterAttributesParser(byte[] data)
+    public static CharacterSkills CharacterAttributesParser(byte[] data)
     {
-        CharacterSkills characterSkills = new CharacterSkills();
+        CharacterSkills characterSkills = new ();
 
         (byte? Value, int? Offset) value;
 
@@ -167,7 +168,7 @@ public class SaveGameParser
         
         Span<byte> buffer = new();
         stream.Position = 0;
-        using BinaryReader br = new BinaryReader(stream);
+        using BinaryReader br = new (stream);
         br.Read(buffer);
 
         return buffer.ToArray();
