@@ -39,10 +39,19 @@
 name: .NET Core Desktop
 
 on:
-  push:
-    branches: [ main ]
-  pull_request:
-    branches: [ main ]
+  workflow_dispatch:
+    # Inputs the workflow accepts.
+    inputs:
+      version:
+        # Friendly description to be shown in the UI instead of 'name'
+        description: 'Version of the package'
+        default: '1.0.0'
+        required: true
+        type: text
+  # push:
+  #   branches: [ main ]
+  # pull_request:
+  #   branches: [ main ]
 
 jobs:
 
@@ -98,11 +107,11 @@ jobs:
       uses: thedoctor0/zip-release@master
       with:
         directory: output
-        filename: 'Release.zip'
+        filename: "Release_$VERSION.zip"
 
     # Upload the MSIX package: https://github.com/marketplace/actions/upload-a-build-artifact
     - name: Upload build artifacts
       uses: actions/upload-artifact@v3
       with:
         name: Release
-        path: 'Release.zip'
+        path: "Release_$VERSION.zip"
