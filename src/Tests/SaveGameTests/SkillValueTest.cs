@@ -49,7 +49,7 @@ public class SkillValueTest
     [TestMethod]
     public void SkillSetter_Throws_TooHigh_OnUpdate()
     {
-        SkillValue a = new SkillValue(3, 0);
+        SkillValue a = new (3, 0);
         Assert.ThrowsException<ArgumentOutOfRangeException>(() => a.Value = 6);
     }
 
@@ -63,7 +63,9 @@ public class SkillValueTest
     [TestMethod]
     public void Skill_IsUpdated_True_Success()
     {
+#pragma warning disable IDE0017 // Simplify object initialization
         SkillValue a = new (3, 0);
+#pragma warning restore IDE0017 // Simplify object initialization
         a.Value = 5;
         a.IsDirty.Should().BeTrue();
     }
