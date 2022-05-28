@@ -1,5 +1,4 @@
-# VampireTheMascaradeSaveGameEditor
-SaveGame editor for Vampire the Masquerade Swansong
+# SaveGame editor for Vampire the Masquerade Swansong
 
 Allows the edition of some properties :
 
