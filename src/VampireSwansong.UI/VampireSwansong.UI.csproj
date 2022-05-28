@@ -8,6 +8,7 @@
 		<ImplicitUsings>enable</ImplicitUsings>
 		<StartupObject>VampireSwansong.UI.Program</StartupObject>
 		<ApplicationIcon>Resources\icon.ico</ApplicationIcon>
+		<NeutralLanguage>en</NeutralLanguage>
 	</PropertyGroup>
 
 	<ItemGroup>

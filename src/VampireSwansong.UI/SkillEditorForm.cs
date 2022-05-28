@@ -26,8 +26,9 @@ public partial class SkillEditorForm : Form
             {
                 Name = $"slot{slot.Key}ToolStripMenuItem",
                 Size = new Size(126, 26),
-                Text = $"Slot&{slot.Key}",
+                Text = $"Slot&{slot.Key}"
             };
+            slotList[i].Click += (object? sender, EventArgs e) => OpenFile(Path.Combine(SaveGame.DefaultSaveGamesPath, slot.Value[0]));
         }
         slotsToolStripMenuItem.DropDownItems.AddRange(slotList);
     }
@@ -146,11 +147,6 @@ public partial class SkillEditorForm : Form
 
     private void OpenFileDialog()
     {
-        skillEditorEmem.AllowValueChangeEvent(false);
-        skillEditorLeysha.AllowValueChangeEvent(false);
-        skillEditorGaleb.AllowValueChangeEvent(false);
-
-
         using OpenFileDialog openFileDialog = new();
         openFileDialog.InitialDirectory = SaveGame.DefaultSaveGamesPath;
         openFileDialog.Filter = "sav files (*.sav)|*.sav";
@@ -161,9 +157,18 @@ public partial class SkillEditorForm : Form
         {
             //Get the path of specified file
             string filePath = openFileDialog.FileName;
-            SetSelectedSave(filePath);
-            saveToolStripMenuItem.Enabled = true;
+            OpenFile(filePath);
         }
+    }
+
+    private void OpenFile(string filePath)
+    {
+        skillEditorEmem.AllowValueChangeEvent(false);
+        skillEditorLeysha.AllowValueChangeEvent(false);
+        skillEditorGaleb.AllowValueChangeEvent(false);
+
+        SetSelectedSave(filePath);
+        saveToolStripMenuItem.Enabled = true;
     }
 
 
